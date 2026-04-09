@@ -37,7 +37,11 @@ export default function Login() {
       }
 
       await login(formData);
-      navigate('/');
+      
+      // Add small delay to ensure state is updated before navigation
+      setTimeout(() => {
+        navigate('/');
+      }, 100);
     } catch (err: any) {
       const errorMessage =
         err.response?.data?.message ||
