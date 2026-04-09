@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: reviewfood-frontend
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        scope: build
+        value: /api

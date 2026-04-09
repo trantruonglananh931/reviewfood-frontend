@@ -1,17 +1,11 @@
-🚀 Blog Frontend - React Client
+🚀 Blog Platform Frontend - React + TypeScript
 📌 Overview
 
-This project is a React Frontend Application for a Blog Platform, built to interact with a Spring Boot RESTful API.
+This project is a React Frontend Application (TypeScript) for the Blog Platform API, designed to provide a clean and user-friendly interface for interacting with the backend system.
 
-The frontend allows users to:
+The application allows users to browse blog posts, view details, interact through comments and reactions, and authenticate securely using JWT.
 
-Browse blog posts
-View post details
-Comment on posts
-React to posts (LIKE, LOVE, ANGRY)
-Authenticate using JWT
-
-👉 This application consumes a deployed backend API and provides a clean, user-friendly interface.
+👉 This frontend consumes a deployed Spring Boot RESTful API.
 
 🌐 Backend API
 
@@ -20,39 +14,57 @@ https://reviewfood-h4j4.onrender.com
 
 ⚠️ Note:
 
-The backend is hosted on a free cloud service
-It may take 20–50 seconds to wake up on the first request
+Backend is hosted on a free cloud service (Render)
+First request may take 20–50 seconds to wake up
 ✨ Features
 🔐 Authentication
-Register new account
-Login with JWT
-Store token in localStorage
-Attach token to API requests
-📝 Blog Features
+User registration
+User login
+JWT token storage (localStorage / sessionStorage)
+Auto attach token to API requests
+📰 Blog Features
 View all posts
 View post details
-Display comments by post
-Add comments
-React to posts
-💬 Interaction System
-Comment system per post
-Reaction system (1 user = 1 reaction per post)
-Dynamic UI updates after interactions
+Responsive UI for reading content
+💬 Interaction Features
+Comment on posts
+View comments by post
+React to posts:
+LIKE 👍
+LOVE ❤️
+ANGRY 😡
+
+👉 Each user can react only once per post
+
+👤 User Experience
+Clean UI with modern design
+Loading states (handling API delay)
+Error handling & notifications
+Responsive (mobile-friendly)
 🏗️ Project Structure
 src/
-│── api/                # Handle API calls (axios)
-│── pages/              # Main pages (Home, Detail, Login...)
-│── components/         # Reusable UI components
-│── routes/             # Routing setup
-│── hooks/              # Custom hooks (optional)
-│── utils/              # Helper functions
-│── App.jsx
-│── main.jsx
+│── components/      # Reusable UI components
+│── pages/           # Page-level components
+│── services/        # API calls (Axios)
+│── hooks/           # Custom React hooks
+│── types/           # TypeScript interfaces/types
+│── utils/           # Helper functions
+│── context/         # Auth context (JWT handling)
+│── App.tsx
+│── main.tsx
 🛠️ Tech Stack
-React (Vite)
+React
+TypeScript
 Axios
-React Router
-Tailwind CSS (optional)
+React Router DOM
+Tailwind CSS (or CSS/SCSS tùy bạn)
+Vite (recommended) / CRA
+🔐 Authentication Flow
+User logs in
+Backend returns JWT token
+Token is stored in browser
+All protected requests include:
+Authorization: Bearer <token>
 📡 API Integration
 🔑 Authentication
 POST /api/auth/register
@@ -64,34 +76,3 @@ GET  /api/comments/{postId}
 POST /api/comments/{postId}
 ❤️ Reactions
 POST /api/reactions/{postId}?type=LIKE
-🔐 Authentication Handling
-After login → store JWT in localStorage
-Attach token to requests:
-Authorization: Bearer <token>
-⚙️ Setup & Run
-1. Install dependencies
-npm install
-2. Run development server
-npm run dev
-
-👉 App runs at:
-
-http://localhost:5173
-🔧 Environment Config (Recommended)
-
-Create .env file:
-
-VITE_API_URL=https://reviewfood-h4j4.onrender.com/api
-
-Then use in code:
-
-const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
-});
-🚧 Future Improvements
-Pagination for posts
-Search & filtering
-UI/UX improvements
-Image upload support
-Dark mode
-Responsive design optimization
