@@ -12,7 +12,11 @@ const axiosClient: AxiosInstance = axios.create({
 axiosClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    
+    // Không gửi token CHỈ cho GET /posts (endpoint public)
+    const isPublicPostsEndpoint = config.method === 'get' && config.url?.includes('/posts') && !config.url?.includes('/posts/');
+    
+    if (token && !isPublicPostsEndpoint) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     config.headers['Content-Type'] = 'application/json';

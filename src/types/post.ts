@@ -4,6 +4,7 @@ export interface User {
   username: string;
   email: string;
   createdAt: string;
+  role?: 'ADMIN' | 'USER';
 }
 
 // Authentication types
@@ -23,16 +24,21 @@ export interface AuthResponse {
   user: User;
 }
 
-// Post types
+// Post types - mapped to backend Post entity
 export interface Post {
   id: number;
   title: string;
   content: string;
+  imageUrl?: string;
   author: User;
   createdAt: string;
-  updatedAt: string;
-  reactions: Reaction[];
-  commentCount: number;
+  comments: Comment[];
+}
+
+export interface CreatePostRequest {
+  title: string;
+  content: string;
+  imageUrl?: string;
 }
 
 // Comment types
@@ -42,7 +48,6 @@ export interface Comment {
   author: User;
   postId: number;
   createdAt: string;
-  updatedAt: string;
 }
 
 export interface CreateCommentRequest {

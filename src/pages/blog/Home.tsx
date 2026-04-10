@@ -1,49 +1,110 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import PostCard from '../../components/PostCard';
+import CreatePostModal from '../../components/CreatePostModal';
+import { getAllPosts } from '../../api/postApi';
 import { useAuth } from '../../context/AuthContext';
+import type { Post } from '../../types/post';
 
 function Home() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
+  const fetchPosts = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await getAllPosts();
+      setPosts(data);
+    } catch (err: any) {
+      console.error('Failed to fetch posts:', err);
+      const errorMessage = err.response?.data?.message || 
+                          err.message || 
+                          'Không thể tải danh sách bài viết. Vui lòng thử lại sau.';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-6">
-            Chào mừng! 👋
-          </h1>
+    <div className="min-h-screen bg-gray-100">
+      {/* Main Content - Facebook Feed Style */}
+      <div className="w-full pt-8 pb-12">
+        <div className="max-w-2xl mx-auto px-4 space-y-6">
+          {/* Create Post Button - For authenticated users */}
+          {user && (
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600">
+                <span className="text-2xl">✏️</span>
+                <span className="font-semibold">Bạn đang nghĩ gì?</span>
+              </div>
+            </button>
+          )}
 
-          <div className="mb-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-            <p className="text-lg text-gray-700 mb-2">
-              <span className="font-semibold">Email:</span> {user?.email}
-            </p>
-            <p className="text-lg text-gray-700">
-              <span className="font-semibold">Username:</span> {user?.username}
-            </p>
-          </div>
+          {/* Error State */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
+              <p className="text-red-700">{error}</p>
+            </div>
+          )}
 
-          <div className="space-y-4">
-            <p className="text-gray-600 text-lg">
-              Bạn đã đăng nhập thành công! Trang Home đang được phát triển.
-            </p>
-            <p className="text-gray-600 text-lg">
-              Sắp có: Danh sách bài viết, bình luận, và các tính năng khác.
-            </p>
-          </div>
+          {/* Loading State */}
+          {loading && (
+            <div className="space-y-6">
+              {/* Skeleton loaders */}
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+                    <div className="flex-1">
+                      <div className="h-3 bg-gray-200 rounded w-1/3 mb-2"></div>
+                      <div className="h-2 bg-gray-200 rounded w-1/4"></div>
+                    </div>
+                  </div>
+                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                  <div className="h-48 bg-gray-200 rounded mb-4"></div>
+                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                </div>
+              ))}
+            </div>
+          )}
 
-          <button
-            onClick={handleLogout}
-            className="mt-8 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-          >
-            Đăng xuất
-          </button>
+          {/* Empty State */}
+          {!loading && posts.length === 0 && !error && (
+            <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+              <p className="text-gray-600 text-lg mb-2">📝 Chưa có bài viết nào</p>
+              <p className="text-gray-500">Quay lại sau để xem các bài viết mới</p>
+            </div>
+          )}
+
+          {/* Posts Feed - Single Column */}
+          {!loading && posts.length > 0 && (
+            <div className="space-y-6">
+              {posts.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Create Post Modal */}
+      <CreatePostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onPostCreated={fetchPosts}
+      />
     </div>
   );
 }
