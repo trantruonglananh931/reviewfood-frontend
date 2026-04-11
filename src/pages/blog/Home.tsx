@@ -34,68 +34,82 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Main Content - Facebook Feed Style */}
-      <div className="w-full pt-8 pb-12">
-        <div className="max-w-2xl mx-auto px-4 space-y-6">
-          {/* Create Post Button - For authenticated users */}
-          {user && (
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="w-full bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow"
-            >
-              <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600">
-                <span className="text-2xl">✏️</span>
-                <span className="font-semibold">Bạn đang nghĩ gì?</span>
-              </div>
-            </button>
-          )}
-
-          {/* Error State */}
-          {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
-              <p className="text-red-700">{error}</p>
-            </div>
-          )}
-
-          {/* Loading State */}
-          {loading && (
-            <div className="space-y-6">
-              {/* Skeleton loaders */}
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                    <div className="flex-1">
-                      <div className="h-3 bg-gray-200 rounded w-1/3 mb-2"></div>
-                      <div className="h-2 bg-gray-200 rounded w-1/4"></div>
-                    </div>
-                  </div>
-                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-48 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+    <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-orange-50">
+      <div className="container">
+        <div className="flex flex-col md:flex-row ">
+          {/* Bảng tin 8/12 */}
+          <div className="w-full md:w-8/12 ">
+            {/* Create Post Button - For authenticated users */}
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="w-full bg-gradient-to-b from-yellow-50  shadow-sm p-4 hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600">
+                  <span className="text-2xl">✏️</span>
+                  <span className="font-semibold">Bạn đang nghĩ gì?</span>
                 </div>
-              ))}
-            </div>
-          )}
+              </button>
+         
 
-          {/* Empty State */}
-          {!loading && posts.length === 0 && !error && (
-            <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-              <p className="text-gray-600 text-lg mb-2">📝 Chưa có bài viết nào</p>
-              <p className="text-gray-500">Quay lại sau để xem các bài viết mới</p>
-            </div>
-          )}
+            {/* Error State */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 p-4 mb-8">
+                <p className="text-red-700">{error}</p>
+              </div>
+            )}
 
-          {/* Posts Feed - Single Column */}
-          {!loading && posts.length > 0 && (
-            <div className="space-y-6">
-              {posts.map((post) => (
-                <PostCard key={post.id} post={post} />
-              ))}
+            {/* Loading State */}
+            {loading && (
+              <div className="">
+                {/* Skeleton loaders */}
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-white p-6 animate-pulse">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+                      <div className="flex-1">
+                        <div className="h-3 bg-gray-200 rounded w-1/3 mb-2"></div>
+                        <div className="h-2 bg-gray-200 rounded w-1/4"></div>
+                      </div>
+                    </div>
+                    <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-48 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Empty State */}
+            {!loading && posts.length === 0 && !error && (
+              <div className="bg-white  shadow-sm p-12 text-center">
+                <p className="text-gray-600 text-lg mb-2">📝 Chưa có bài viết nào</p>
+                <p className="text-gray-500">Quay lại sau để xem các bài viết mới</p>
+              </div>
+            )}
+
+            {/* Posts Feed - Single Column */}
+            {!loading && posts.length > 0 && (
+              <div className="space-y-6">
+                {posts.map((post) => (
+                  <PostCard key={post.id} post={post} />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Tin ngắn 4/12 */}
+          <div className="w-full md:w-4/12">
+            <div className="bg-white shadow-sm p-6 mb-6">
+              <h2 className="text-lg font-semibold text-orange-600 mb-4">Tin ngắn</h2>
+              <ul className="space-y-3">
+                <li className="text-gray-700 text-sm">🍔 ReviewFood đã cập nhật giao diện mới!</li>
+                <li className="text-gray-700 text-sm">🎉 Chào mừng bạn đến với cộng đồng chia sẻ ẩm thực.</li>
+                <li className="text-gray-700 text-sm">📰 Đăng bài viết đầu tiên để nhận huy hiệu!</li>
+              </ul>
             </div>
-          )}
+            {/* Có thể thêm các widget khác ở đây */}
+          </div>
         </div>
       </div>
 
