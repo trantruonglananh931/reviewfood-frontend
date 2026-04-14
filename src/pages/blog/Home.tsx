@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import type { Post } from '../../types/post';
 
 function Home() {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +34,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-orange-50">
+    <div className="min-h-screen bg-linear-to-b from-yellow-50 to-orange-50">
       <div className="container">
         <div className="flex flex-col md:flex-row ">
           {/* Bảng tin 8/12 */}
@@ -42,7 +42,7 @@ function Home() {
             {/* Create Post Button - For authenticated users */}
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="w-full bg-gradient-to-b from-yellow-50  shadow-sm p-4 hover:shadow-md transition-shadow"
+                className="w-full bg-linear-to-b from-yellow-50  shadow-sm p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-3 text-gray-600 hover:text-blue-600">
                   <span className="text-2xl">✏️</span>

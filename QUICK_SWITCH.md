@@ -2,10 +2,10 @@
 
 ## Tóm Tắt Nhanh
 
-| Command | Dùng cho | Nhận xét |
-|---------|----------|---------|
-| `npm run dev` | 💻 Local Development | Backend: `http://localhost:3001/api` |
-| `npm run build` | 🚀 Production Build | Backend: `/api` (Render) |
+|      Command      |          Dùng cho          | Nhận xét |
+|-------------------|----------------------------|---------|
+| `npm run dev`     | 💻 Local Development       | Backend: `http://localhost:3001/api` |
+| `npm run build`   | 🚀 Production Build        | Backend: `/api` (Render) |
 | `npm run preview` | 🧪 Test Production Locally | Xem trước build production |
 
 ---
