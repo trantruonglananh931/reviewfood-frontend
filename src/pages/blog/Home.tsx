@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PostCard from '../../components/PostCard';
 import CreatePostModal from '../../components/CreatePostModal';
 import { getAllPosts } from '../../api/postApi';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 import type { Post } from '../../types/post';
 
 function Home() {
