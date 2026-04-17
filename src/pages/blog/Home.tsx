@@ -37,8 +37,8 @@ function Home() {
     <div className="min-h-screen bg-linear-to-b from-yellow-50 to-orange-50">
       <div className="container">
         <div className="flex flex-col md:flex-row ">
-          {/* Bảng tin 8/12 */}
-          <div className="w-full md:w-8/12 ">
+          {/* Bảng tin 4/12 */}
+          <div className="w-full md:w-4/12 ">
             {/* Create Post Button - For authenticated users */}
               <button
                 onClick={() => setIsModalOpen(true)}
@@ -101,14 +101,65 @@ function Home() {
           {/* Tin ngắn 4/12 */}
           <div className="w-full md:w-4/12">
             <div className="bg-white shadow-sm p-6 mb-6">
-              <h2 className="text-lg font-semibold text-orange-600 mb-4">Tin ngắn</h2>
-              <ul className="space-y-3">
-                <li className="text-gray-700 text-sm">🍔 ReviewFood đã cập nhật giao diện mới!</li>
-                <li className="text-gray-700 text-sm">🎉 Chào mừng bạn đến với cộng đồng chia sẻ ẩm thực.</li>
-                <li className="text-gray-700 text-sm">📰 Đăng bài viết đầu tiên để nhận huy hiệu!</li>
+              <h2 className="text-lg font-semibold text-orange-600 mb-4">🟢 SLIDE 1 – Excel Approach</h2>
+              <ul className="space-y-2 mb-4">
+                <li className="text-gray-700 text-sm font-semibold">Cách tiếp cận:</li>
+                <li className="text-gray-700 text-sm">- Làm sạch dữ liệu (Price, Rating về dạng số)</li>
+                <li className="text-gray-700 text-sm">- Sử dụng Pivot Table để phân tích</li>
+                <li className="text-gray-700 text-sm">- Áp dụng filter để xử lý điều kiện</li>
+                <li className="text-gray-700 text-sm">- Dùng VLOOKUP để điền dữ liệu thiếu</li>
+                <li className="text-gray-700 text-sm font-semibold mt-2">Các bước:</li>
+                <li className="text-gray-700 text-sm">1. Clean & structure data</li>
+                <li className="text-gray-700 text-sm">2. Pivot Table (Average Price & Rating)</li>
+                <li className="text-gray-700 text-sm">3. VLOOKUP để fill missing values</li>
+                <li className="text-gray-700 text-sm">4. Research các phương pháp liên hệ</li>
+              </ul>
+              <h2 className="text-lg font-semibold text-orange-600 mb-4">🟡 SLIDE 2 – Price Insight</h2>
+              <ul className="space-y-2 mb-4">
+                <li className="text-gray-700 text-sm">- Xe Certified có giá cao nhất</li>
+                <li className="text-gray-700 text-sm">- Premium đứng giữa, Standard thấp nhất</li>
+                <li className="text-gray-700 text-sm">- Giá có xu hướng ổn định theo năm</li>
+              </ul>
+              <h2 className="text-lg font-semibold text-orange-600 mb-4">🟡 SLIDE 3 – Mileage Insight</h2>
+              <ul className="space-y-2 mb-4">
+                <li className="text-gray-700 text-sm">- Xe có mileage thấp (&lt;50,000) có giá cao hơn</li>
+                <li className="text-gray-700 text-sm">- Mileage càng cao → giá càng giảm</li>
+              </ul>
+              <h2 className="text-lg font-semibold text-orange-600 mb-4">🟡 SLIDE 4 – Rating Insight</h2>
+              <ul className="space-y-2 mb-4">
+                <li className="text-gray-700 text-sm">- Xe có rating cao thường có giá cao hơn</li>
+                <li className="text-gray-700 text-sm">- Certified thường có rating tốt hơn</li>
+              </ul>
+              <h2 className="text-lg font-semibold text-orange-600 mb-4">🟡 SLIDE 5 – Tổng hợp Insight</h2>
+              <ul className="space-y-2">
+                <li className="text-gray-700 text-sm font-semibold">Giá phụ thuộc vào:</li>
+                <li className="text-gray-700 text-sm">- Badge</li>
+                <li className="text-gray-700 text-sm">- Mileage</li>
+                <li className="text-gray-700 text-sm">- Rating</li>
+                <li className="text-gray-700 text-sm">- Certified có giá trị cao nhất</li>
+                <li className="text-gray-700 text-sm">- Mileage thấp giúp giữ giá tốt hơn</li>
               </ul>
             </div>
             {/* Có thể thêm các widget khác ở đây */}
+          </div>
+
+          {/* Phần thứ 3 - 4/12 */}
+          <div className="w-full md:w-4/12">
+            <div className="bg-white shadow-sm p-6 mb-6">
+              <h2 className="text-lg font-semibold text-blue-600 mb-4">🇻🇳 Tiếng Việt (ngắn gọn)</h2>
+              <ul className="space-y-3">
+                <li className="text-gray-700 text-sm">📄 Trang Liên hệ</li>
+                <li className="text-gray-700 text-sm">✉️ Email hỗ trợ</li>
+                <li className="text-gray-700 text-sm">🔍 WHOIS domain</li>
+                <li className="text-gray-700 text-sm">🌐 Mạng xã hội: Facebook, LinkedIn, Twitter</li>
+                <li className="text-gray-700 text-sm">💬 Live chat trên web</li>
+                <li className="text-gray-700 text-sm">📞 Hotline / SĐT</li>
+                <li className="text-gray-700 text-sm">📝 Form đăng ký / góp ý</li>
+                <li className="text-gray-700 text-sm">🔗 LinkedIn công ty/nhân viên</li>
+                <li className="text-gray-700 text-sm">🏢 Google Business</li>
+                <li className="text-gray-700 text-sm">🗣️ Diễn đàn / cộng đồng</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
