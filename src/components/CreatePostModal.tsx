@@ -73,8 +73,8 @@ export default function CreatePostModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full mx-4">
+    <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50">
+      <div className="bg-white rounded-sm shadow-lg max-w-2xl w-full mx-4">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <h2 className="text-2xl font-bold text-gray-800">📝 Đăng bài viết mới</h2>
@@ -90,7 +90,7 @@ export default function CreatePostModal({
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {/* Error Message */}
           {error && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-red-700">
+            <div className="bg-red-50 border border-red-200 rounded-sm p-3 text-red-700">
               {error}
             </div>
           )}
@@ -106,7 +106,7 @@ export default function CreatePostModal({
               value={formData.title}
               onChange={handleChange}
               placeholder="Nhập tiêu đề bài viết..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -121,7 +121,7 @@ export default function CreatePostModal({
               onChange={handleChange}
               placeholder="Nhập nội dung bài viết..."
               rows={6}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -136,7 +136,7 @@ export default function CreatePostModal({
               value={formData.imageUrl || ''}
               onChange={handleChange}
               placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -145,14 +145,14 @@ export default function CreatePostModal({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-lg hover:bg-gray-50"
+              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 font-semibold rounded-sm hover:bg-gray-50"
             >
               Hủy
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+              className="flex-1 px-4 py-2 bg-blue-600 text-white font-semibold rounded-sm hover:bg-blue-700 disabled:bg-gray-400"
             >
               {loading ? 'Đang đăng...' : 'Đăng bài'}
             </button>
