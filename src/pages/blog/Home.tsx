@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 import CreatePostModal from '../../components/CreatePostModal';
-import PostCard from '../../components/PostCard';
 import { getAllPosts } from '../../api/postApi';
-import { useAuth } from '../../context/AuthContext';
-import type { Post } from '../../types/post';
 
 function Home() {
-  const { isAuthenticated } = useAuth();
-  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +12,7 @@ function Home() {
       setLoading(true);
       setError(null);
       const data = await getAllPosts();
-      setPosts(data);
+      void data;
     } catch (err: any) {
       console.error('Failed to fetch posts:', err);
       const errorMessage = err.response?.data?.message || 
